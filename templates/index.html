@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>CodeFinder</title>
+  
+<link rel="apple-touch-icon" sizes="180x180" href="./static/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="./static/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="./static/favicon/site.webmanifest">
+<link rel="mask-icon" href="./static/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+  <link rel="stylesheet" href="static/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+  
+</head>
+
+<body>
+  <div class="container">
+    <h1>CODE FINDER</h1>
+  </div>
+
+  <div class="form">
+      <form method="POST">
+          {{ form.hidden_tag() }}
+          {{ form.search.label }}
+          {{ form.search() }}
+          {{ form.submit() }}
+      </form>
+  </div>
+
+    {% if results %}
+    <div class="results">
+      {% for (result, q_heading) in results %}
+      <div class="results-box">
+        <p>{{ loop.index }}. <a href="{{ result }}" target="_blank">{{ q_heading }}</a></p>
+      </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    {% if search_triggered %}
+        <p>No results found, please try with other related word(s).</p>
+    {% endif %}
+  {% endif %}
+
+</body>
+
+</html>
